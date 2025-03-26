@@ -117,23 +117,9 @@ git push origin feature-branch
 ## 📬 **Contact**
 
 - GitHub: Your GitHub Profile  
-- Email: your-email@example.com  
+- Email: axeeddis@gmail.com  
 
 ---
 
-## ✅ **💡 Next Steps**
 
-1. Create a requirements.txt:
-pip freeze > requirements.txt
 
-2. Push to GitHub:
-git add .  
-git commit -m "Initial commit"  
-git push origin main  
-"""
-
-# Save the content into a README.md file
-with open("README.md", "w") as file:
-    file.write(readme_content)
-
-print("✅ README.md file generated successfully!")
