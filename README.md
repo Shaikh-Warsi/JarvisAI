@@ -1,6 +1,4 @@
-# README.md content in a Python file
 
-readme_content = """
 # 🎙️ JarvisAI – AI-Powered Task Automation Assistant 🚀
 
 **JarvisAI** is an advanced AI-powered voice assistant that listens to voice commands, evaluates the task, generates the appropriate Python code, and automatically executes it.  
