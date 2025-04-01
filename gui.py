@@ -1,7 +1,7 @@
 import sys
 import threading
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QLabel, QPushButton, QLineEdit, QVBoxLayout, QWidget
+    QApplication, QMainWindow, QLabel, QPushButton, QLineEdit, QVBoxLayout, QWidget, QTextEdit
 )
 from PyQt5.QtGui import QMovie, QFont, QPainter, QColor, QBrush, QRegion
 from PyQt5.QtCore import Qt, QSize, QPoint
@@ -99,6 +99,14 @@ class SciFiAssistant(QMainWindow):
         """)
         self.toggle_button.clicked.connect(self.toggle_mode)
 
+        self.task_queue_display = QTextEdit(self)
+        self.task_queue_display.setGeometry(100,620,300,100)
+        self.task_queue_display.setReadOnly(True)
+
+        self.task_history_display = QTextEdit(self)
+        self.task_history_display.setGeometry(450,620,300,100)
+        self.task_history_display.setReadOnly(True)
+
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_pos = event.globalPos() - self.frameGeometry().topLeft()
@@ -121,6 +129,8 @@ class SciFiAssistant(QMainWindow):
                 if user_input and user_input.strip():
                     self.status_label.setText(f"Processing: {user_input}")
                     await task_manager.execute_task(user_input)
+                    self.update_displays()
+            await asyncio.sleep(0.1)
 
     def process_text_input(self):
         if not self.listening:
@@ -129,6 +139,7 @@ class SciFiAssistant(QMainWindow):
                 self.status_label.setText(f"Processing: {user_input}")
                 asyncio.run(task_manager.execute_task(user_input))
                 self.command_input.clear()
+                self.update_displays()
 
     def toggle_mode(self):
         self.listening = not self.listening
@@ -140,6 +151,13 @@ class SciFiAssistant(QMainWindow):
             self.status_label.setText("Typing Mode: ON")
             self.command_input.setVisible(True)
             self.toggle_button.setText("Switch to Listening Mode")
+
+    def update_displays(self):
+        """Updates the task queue and history displays."""
+        queue_text = "\n".join(list(task_manager.task_queue.queue))
+        history_text = "\n".join(task_manager.task_history[-5:])
+        self.task_queue_display.setText(queue_text)
+        self.task_history_display.setText(history_text)
 
 def run_gui():
     app = QApplication(sys.argv)
