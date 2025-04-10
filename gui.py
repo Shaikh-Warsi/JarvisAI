@@ -30,16 +30,16 @@ class SciFiAssistant(QMainWindow):
         self.setCentralWidget(central_widget)
 
         self.setStyleSheet("""
-            background: rgba(0, 0, 0, 240); 
-            border-radius: 30px; 
+            background: rgba(0, 0, 0, 240);
+            border-radius: 30px;
             border: 2px solid #00FFFF;
         """)
 
         self.close_button = QPushButton("✖", self)
         self.close_button.setGeometry(780, 10, 50, 50)
         self.close_button.setStyleSheet("""
-            color: #FF5555; 
-            font-size: 24px; 
+            color: #FF5555;
+            font-size: 24px;
             background: transparent;
         """)
         self.close_button.clicked.connect(self.close)
@@ -47,8 +47,8 @@ class SciFiAssistant(QMainWindow):
         self.minimize_button = QPushButton("➖", self)
         self.minimize_button.setGeometry(720, 10, 50, 50)
         self.minimize_button.setStyleSheet("""
-            color: #55FF55; 
-            font-size: 24px; 
+            color: #55FF55;
+            font-size: 24px;
             background: transparent;
         """)
         self.minimize_button.clicked.connect(self.showMinimized)
@@ -66,9 +66,9 @@ class SciFiAssistant(QMainWindow):
         self.status_label = QLabel("Listening Mode: ON", self)
         self.status_label.setGeometry(100, 470, 650, 40)
         self.status_label.setStyleSheet("""
-            color: #00FF00; 
-            font-size: 20px; 
-            font-family: 'Orbitron'; 
+            color: #00FF00;
+            font-size: 20px;
+            font-family: 'Orbitron';
             background: transparent;
         """)
         self.status_label.setAlignment(Qt.AlignCenter)
@@ -77,11 +77,11 @@ class SciFiAssistant(QMainWindow):
         self.command_input.setGeometry(100, 520, 650, 40)
         self.command_input.setPlaceholderText("Type your command here...")
         self.command_input.setStyleSheet("""
-            color: #FFFFFF; 
-            font-size: 16px; 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 2px solid #00FFFF; 
-            border-radius: 12px; 
+            color: #FFFFFF;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00FFFF;
+            border-radius: 12px;
             padding: 10px;
         """)
         self.command_input.returnPressed.connect(self.process_text_input)
@@ -90,11 +90,11 @@ class SciFiAssistant(QMainWindow):
         self.toggle_button = QPushButton("Switch to Typing Mode", self)
         self.toggle_button.setGeometry(330, 570, 200, 45)
         self.toggle_button.setStyleSheet("""
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
-                                        stop:0 #00FFFF, stop:1 #0055FF);
-            color: white; 
-            font-size: 16px; 
-            border-radius: 15px; 
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                            stop:0 #00FFFF, stop:1 #0055FF);
+            color: white;
+            font-size: 16px;
+            border-radius: 15px;
             padding: 12px;
         """)
         self.toggle_button.clicked.connect(self.toggle_mode)
@@ -153,7 +153,6 @@ class SciFiAssistant(QMainWindow):
             self.toggle_button.setText("Switch to Listening Mode")
 
     def update_displays(self):
-        """Updates the task queue and history displays."""
         queue_text = "\n".join(list(task_manager.task_queue.queue))
         history_text = "\n".join(task_manager.task_history[-5:])
         self.task_queue_display.setText(queue_text)
