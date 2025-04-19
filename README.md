@@ -1,6 +1,8 @@
 
 # 🎙️ JarvisAI – AI-Powered Task Automation Assistant 🚀
 
+# 🚧 Work in Progress: This is still in a early development stage, More GUI and many many many more features coming soon
+
 **JarvisAI** is an advanced AI-powered voice assistant that listens to voice commands, evaluates the task, generates the appropriate Python code, and automatically executes it.  
 Powered by **Google Gemini-2.0-Flash** for intelligent code generation and task handling.
 
